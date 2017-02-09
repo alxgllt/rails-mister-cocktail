@@ -1,8 +1,12 @@
 .cards {
-  border: 1px black solid;
   border-radius: 3px;
   margin: 10px;
-  padding: 10px
+  padding: 10px;
+  border-radius: 10px
+}
+
+.btn-card {
+  color: #7BC64F;
 }
 
 .badge-container {

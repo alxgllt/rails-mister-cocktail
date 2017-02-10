@@ -23,6 +23,13 @@ class CocktailsController < ApplicationController
     end
   end
 
+  def update
+    @cocktail = Cocktail.find(params[:id])
+    @cocktail.update(cocktail_params)
+    redirect_to cocktail_path(@cocktail)
+  end
+
+
   def destroy
   @cocktail = Cocktail.find(params[:id])
   @cocktail.destroy
@@ -32,6 +39,6 @@ end
   private
 
   def cocktail_params
-    params.require(:cocktail).permit(:name, :dose, :ingredient)
+    params.require(:cocktail).permit(:name, :dose, :ingredient, :photo, :photo_cache)
   end
 end

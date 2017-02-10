@@ -1,21 +1,35 @@
 <div class="text-center">
 
-<h2><%= @cocktail.name %></h2>
+  <h2><%= @cocktail.name %></h2>
+  <%= cl_image_tag @cocktail.photo, height: 100, width: 150, crop: :fill %>
 
-<p>What you need: <br>
-  <% @cocktail.doses.each do |dose| %>
-    <%= dose.description %> of <%= dose.ingredient.name %>
-    <%= link_to 'delete', dose, method: :delete %> <br>
+
+  <p> <br>
+    <% @cocktail.doses.each do |dose| %>
+      <%= dose.description %> of <%= dose.ingredient.name %>
+      <%= link_to 'delete', dose, method: :delete %> <br>
+    <% end %>
+  </p>
+
+
+  <h3>Add a new photo</h3>
+
+  <%= simple_form_for(@cocktail) do |f| %>
+    <%= f.error_notification %>
+    <div class="form-inputs">
+      <%= f.input :photo, label: false %>
+      <%= f.input :photo_cache, as: :hidden %>
+      <%= f.submit "upload", class: "btn btn-primary"%>
+    </div>
   <% end %>
-</p>
 
-<h3>Add a dose</h3>
+  <h3>Add a dose</h3>
 
-<%= simple_form_for([@cocktail, @dose]) do |f| %>
-  <%= f.input :description %> <br>
-  <%= f.input :ingredient_id, collection: Ingredient.all%> <br>
-  <%= f.submit %>
-<% end %>
+  <%= simple_form_for([@cocktail, @dose]) do |f| %>
+    <%= f.input :description, label: "Quantité : " %> <br>
+    <%= f.input :ingredient_id, collection: Ingredient.all, label: "Ingrédient : "%> <br>
+    <%= f.submit "add a dose", class: "btn btn-primary" %>
+  <% end %>
 
-<%= link_to "Back", cocktails_path, {class: "btn btn-secondary"} %>
+  <%= link_to "Back", cocktails_path, {class: "btn btn-secondary"} %>
 </div>

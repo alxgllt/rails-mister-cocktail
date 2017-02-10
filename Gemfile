@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'figaro'
+gem 'cloudinary', '1.1.0'
 
 
 gem 'rails-controller-testing'
